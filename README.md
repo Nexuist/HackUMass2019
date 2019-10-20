@@ -4,6 +4,8 @@ Innovation Without Purpose
 
 ## Overview
 
+![A side view of TurboChair](docs/side.jpeg)
+
 The TurboChair electronics system contains both a Raspberry Pi and an Arduino. The Arduino is responsible for mission critical controls while the Pi drives the infotainment touchscreen display.
 
 The Arduino pairs remotely with a Nyko Kama Wii nunchuck, allowing the driver to control the chair no matter where they are.
