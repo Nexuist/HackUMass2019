@@ -17,7 +17,7 @@
           <h1 id="gear">{{ direction }}</h1>
           <h3 id="armed" :class="{'armed-hidden': direction == 'N'}">ARMED</h3>
         </div>
-        <div id="chair-overhead" class="column" style="margin-bottom:40px">
+        <div id="chair-overhead" class="column">
           <div id="joystick-circle">
             <div
               id="joystick-cursor"
@@ -25,7 +25,7 @@
             ></div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="padding-bottom: 30px">
           <progress max="100" :value="motorL * 100" class="power-bar"></progress>
           <progress max="100" :value="motorR * 100" class="power-bar"></progress>
         </div>

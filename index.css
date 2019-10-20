@@ -41,7 +41,7 @@ h6 {
 #sidebar {
   width: 25vw;
   padding: 25px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   position: relative;
 }
 
@@ -52,13 +52,13 @@ h6 {
 }
 
 #gear {
-  font-size: 8em;
+  font-size: 3em;
   display: block;
 }
 
 #armed {
   color: red;
-  font-size: 2em;
+  font-size: 1em;
   border-radius: 10px;
   padding: 10px;
   border: 1px solid red;
@@ -72,7 +72,7 @@ h6 {
 #chair-overhead {
   background: url("chair.png");
   background-size: cover;
-  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 #joystick-circle {
