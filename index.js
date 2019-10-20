@@ -18,17 +18,42 @@
 let app = new Vue({
   el: "#root",
   data: {
-    direction: "D",
+    direction: "N",
     joystickX: 128,
     joystickY: 128,
-    motorL: 0.2,
-    motorR: 0.4,
+    motorL: 0,
+    motorR: 0,
     diagnostic: "Connecting to chair..."
   },
   mounted: function() {
-    // setInterval(function() {
-    //   app.direction = app.direction == "N" ? "D" : "N";
-    // }, 1000);
+    ws = new WebSocket("ws://localhost:1337");
+    ws.onopen = e => {
+      this.diagnostic = "Connected!";
+    };
+    ws.onmessage = msg => {
+      let data = msg.data;
+      if (data.startsWith("DATA:")) {
+        data = data.substring(5);
+        let keys = data.split("|");
+        let armed = +keys[0];
+        let goingForward = +keys[1];
+        let joystickX = +keys[2];
+        let joystickY = +keys[3];
+        let motorL = +keys[4];
+        let motorR = +keys[5];
+        if (armed && goingForward) this.direction = "D";
+        if (armed && !goingForward) this.direction = "R";
+        if (!armed) this.direction = "N";
+        this.joystickX = joystickX;
+        this.joystickY = joystickY;
+        this.motorL = motorL / 255;
+        this.motorR = motorR / 255;
+      }
+    };
+    ws.onerror = err => {
+      this.diagnostic = "Connection Failed";
+      console.error(err);
+    };
   },
   computed: {
     /* 

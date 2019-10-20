@@ -87,11 +87,21 @@ int refreshNunchuckData()
 }
 
 /* Relay Setup */
+int AXIS_DEADZONE = 8;
 int leftPowerPin = 10;
 int rightPowerPin = 11;
 int relay1Pin = 2;
 int relay2Pin = 3;
-int AXIS_DEADZONE = 8;
+
+/* State variables */
+int goingForward = 1;
+int armed = 0;
+int xValue = 0;
+int yValue = 0;
+
+/* Output */
+int leftOutput = 0;
+int rightOutput = 0;
 
 void setup()
 {
@@ -121,27 +131,29 @@ void loop()
         delay(1000);
         return;
     }
-    int armed = cnd->BtnZ;
-    if (armed == 0) {
-      int xValue = cnd->JoyX;
-      int yValue = cnd->JoyY;
+    if (millis() % 200 <= 20) Serial.println((String)"DATA:" + armed + "|" + goingForward + "|" +  xValue + "|" + yValue + "|" + leftOutput + "|" + rightOutput);
+    armed = (cnd->BtnZ == 0);
+    xValue = cnd->JoyX;
+    yValue = cnd->JoyY;
+    goingForward = 1;
+    if (armed) {
       int xMapped = adjustForDeadzone(map(xValue, 255, 0, -255, 255));
       int yMapped = adjustForDeadzone(map(yValue, 0, 255, -255, 255));
-      int leftOutput = (yMapped - xMapped);
-      int rightOutput = (yMapped + xMapped);
+      leftOutput = (yMapped - xMapped);
+      rightOutput = (yMapped + xMapped);
+      goingForward = !(leftOutput < 0 && rightOutput < 0);
       if (leftOutput > 0) digitalWrite(relay1Pin, HIGH);
       if (leftOutput < 0) digitalWrite(relay1Pin, LOW);
       if (rightOutput > 0) digitalWrite(relay2Pin, HIGH);
       if (rightOutput < 0) digitalWrite(relay2Pin, LOW);
       leftOutput = abs(leftOutput);
       rightOutput = abs(rightOutput);
-      analogWrite(leftPowerPin, leftOutput);
-      analogWrite(rightPowerPin, rightOutput);
-      if (millis() % 200 <= 20) Serial.println((String)leftOutput + "|" + rightOutput);
     }
     else {
-      analogWrite(leftPowerPin, 0);
-      analogWrite(rightPowerPin, 0);
+      leftOutput = 0;
+      rightOutput = 0;
     }
+    analogWrite(leftPowerPin, leftOutput);
+    analogWrite(rightPowerPin, rightOutput);
     delay(15);
 }
