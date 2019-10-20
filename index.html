@@ -12,7 +12,7 @@
   <body>
     <div id="root">
       <div id="sidebar" class="column">
-        <button id="fullscreen-btn">FS</button>
+        <button id="fullscreen-btn" v-on:click="fs">FS</button>
         <div class="column">
           <h1 id="gear">{{ direction }}</h1>
           <h3 id="armed" :class="{'armed-hidden': direction == 'N'}">ARMED</h3>
