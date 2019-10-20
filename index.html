@@ -10,23 +10,25 @@
   </head>
   <body>
     <div class="root">
-      <div class="sidebar column">
+      <div class="sidebar column" style="width:25vw; padding:25px">
         <div class="column" style="flex: 1">
           <h1 id="gear">N</h1>
           <h3 id="armed">ARMED</h3>
         </div>
-        <div class="overhead row" style="flex: 3; width:100%">
-          <div style="flex:1">
-            a
-          </div>
-          <div class="chair-aerial" style="flex:2; background:green"></div>
-          <div style="flex:1">
-            c
-            <!-- pass -->
+        <div id="chair-overhead" class="column" style="flex:1">
+          <div id="joystick-circle">
+            <div id="joystick-cursor" style="width: 20px; height: 20px; top: 64px; left: 64px;"></div>
           </div>
         </div>
+        <div class="row" style="flex:2">
+          <progress max="100" value="80" class="power-bar"></progress>
+          <!-- <div id="joystick-circle">
+            <div id="joystick-cursor" style="width: 20px; height: 20px; top: 20px; left: 10px;"></div>
+          </div> -->
+          <progress max="100" value="80" class="power-bar"></progress>
+        </div>
       </div>
-      <div class="content">
+      <div class="content" style="width:75vw">
         <img src="ndi.png" />
       </div>
     </div>
