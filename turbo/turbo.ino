@@ -131,7 +131,7 @@ void loop()
         delay(1000);
         return;
     }
-    if (millis() % 200 <= 20) Serial.println((String)"DATA:" + armed + "|" + goingForward + "|" +  xValue + "|" + yValue + "|" + leftOutput + "|" + rightOutput);
+    if (millis() % 100 <= 20) Serial.println((String)"DATA:" + armed + "|" + goingForward + "|" +  xValue + "|" + yValue + "|" + leftOutput + "|" + rightOutput);
     armed = (cnd->BtnZ == 0);
     xValue = cnd->JoyX;
     yValue = cnd->JoyY;

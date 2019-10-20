@@ -1,19 +1,4 @@
-// let video = document.querySelector("#hud");
-
-// function fs() {
-//   if (!document.fullscreenElement) {
-//     video.requestFullscreen();
-//   }
-//   document.exitFullscreen();
-// }
-
-// navigator.mediaDevices
-//   .getUserMedia({ video: true })
-//   .then(function(stream) {
-//     video.srcObject = stream;
-//     video.play();
-//   })
-//   .catch(err => console.log(err));
+let video;
 
 let app = new Vue({
   el: "#root",
@@ -25,7 +10,22 @@ let app = new Vue({
     motorR: 0,
     diagnostic: "Connecting to chair..."
   },
+  methods: {
+    fs: function() {
+      if (!document.fullscreenElement) {
+        video.requestFullscreen();
+      }
+    }
+  },
   mounted: function() {
+    video = document.querySelector("#hud");
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+      })
+      .catch(err => console.log(err));
     ws = new WebSocket("ws://localhost:1337");
     ws.onopen = e => {
       this.diagnostic = "Connected!";
