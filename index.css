@@ -52,6 +52,7 @@ h6 {
 }
 
 #gear {
+  margin-top: 10px;
   font-size: 3em;
   display: block;
 }
@@ -91,7 +92,7 @@ h6 {
 }
 
 .power-bar {
-  height: 50px;
+  height: 25px;
   transform: rotate(-90deg);
 }
 
