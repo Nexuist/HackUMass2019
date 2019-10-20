@@ -1,3 +1,7 @@
+/*
+This code taken from https://github.com/Nexuist/Wii-Kama-API
+Written by me (Andi!) three years ago
+*/
 // #include <Wire.h>
 
 // #define WII_I2C_ID 0x52
