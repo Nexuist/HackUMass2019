@@ -5,24 +5,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script type="text/javascript" src="index.js" defer></script>
-    <style>
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        background: peachpuff;
-      }
-      video {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <video id="video"></video>
-    <p>bababoey</p>
+    <div class="root">
+      <div class="sidebar column">
+        <div class="column" style="flex: 1">
+          <h1 id="gear">N</h1>
+          <h3 id="armed">ARMED</h3>
+        </div>
+        <div class="overhead row" style="flex: 3; width:100%">
+          <div style="flex:1">
+            a
+          </div>
+          <div class="chair-aerial" style="flex:2; background:green"></div>
+          <div style="flex:1">
+            c
+            <!-- pass -->
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <img src="ndi.png" />
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,67 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.root {
+  height: 100%;
+  display: flex;
+  font-family: Roboto;
+}
+
+.sidebar {
+  flex: 1;
+  padding: 25px;
+}
+
+#gear {
+  font-size: 8em;
+  display: block;
+}
+
+#armed {
+  color: red;
+  font-size: 2em;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid red;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  flex: 2;
+}
