@@ -8,6 +8,8 @@ The TurboChair electronics system contains both a Raspberry Pi and an Arduino. T
 
 The Arduino pairs remotely with a Nyko Kama Wii nunchuck, allowing the driver to control the chair no matter where they are.
 
+![The Kama nunchuck](docs/kama.png)
+
 ## Operator's Guide
 
 To drive the chair, turn on the emergency shut off switch and also turn on the nunchuck remote. Once connected (shown via a solid blue LED on the nunchuck), hold the Z button on the nunchuck to "arm" drive mode and use the joystick to provide power. As a safety measure, you must hold down the Z button in order to continue moving. On the touchscreen you will see various metrics such as the output for each motor and your joystick input. When reversing, you will see an "R" on the screen to indicate that both motors are inverted. At all times you will have a rear view livestream to maintain situational awareness.
