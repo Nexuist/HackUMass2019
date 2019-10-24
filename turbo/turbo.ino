@@ -114,11 +114,13 @@ void setup()
     Serial.println("MSG: Beginning loop");
 }
 
-int adjustForDeadzone(int val) {
-  if ((val > -AXIS_DEADZONE) && (val < AXIS_DEADZONE)) {
-    val = 0;
-  }
-  return val;
+int adjustForDeadzone(int val)
+{
+    if ((val > -AXIS_DEADZONE) && (val < AXIS_DEADZONE))
+    {
+        val = 0;
+    }
+    return val;
 }
 
 void loop()
@@ -131,27 +133,42 @@ void loop()
         delay(1000);
         return;
     }
-    if (millis() % 100 <= 20) Serial.println((String)"DATA:" + armed + "|" + goingForward + "|" +  xValue + "|" + yValue + "|" + leftOutput + "|" + rightOutput);
+    if (millis() % 100 <= 20)
+        Serial.println((String) "DATA:" + armed + "|" + goingForward + "|" + xValue + "|" + yValue + "|" + leftOutput + "|" + rightOutput);
     armed = (cnd->BtnZ == 0);
     xValue = cnd->JoyX;
     yValue = cnd->JoyY;
     goingForward = 1;
-    if (armed) {
-      int xMapped = adjustForDeadzone(map(xValue, 255, 0, -255, 255));
-      int yMapped = adjustForDeadzone(map(yValue, 0, 255, -255, 255));
-      leftOutput = (yMapped - xMapped);
-      rightOutput = (yMapped + xMapped);
-      goingForward = !(leftOutput < 0 && rightOutput < 0);
-      if (leftOutput > 0) digitalWrite(relay1Pin, HIGH);
-      if (leftOutput < 0) digitalWrite(relay1Pin, LOW);
-      if (rightOutput > 0) digitalWrite(relay2Pin, HIGH);
-      if (rightOutput < 0) digitalWrite(relay2Pin, LOW);
-      leftOutput = abs(leftOutput);
-      rightOutput = abs(rightOutput);
+    if (armed)
+    {
+        int xMapped = adjustForDeadzone(map(xValue, 255, 0, -255, 255));
+        int yMapped = adjustForDeadzone(map(yValue, 0, 255, -255, 255));
+        if (cnd->BtnC == 0)
+        {
+            leftOutput = (yMapped - xMapped);
+            rightOutput = (yMapped + xMapped);
+        }
+        else
+        {
+            leftOutput = (yMapped - xMapped) / 2;
+            rightOutput = (yMapped + xMapped) / 2;
+        }
+        goingForward = !(leftOutput < 0 && rightOutput < 0);
+        if (leftOutput > 0)
+            digitalWrite(relay1Pin, HIGH);
+        if (leftOutput < 0)
+            digitalWrite(relay1Pin, LOW);
+        if (rightOutput > 0)
+            digitalWrite(relay2Pin, HIGH);
+        if (rightOutput < 0)
+            digitalWrite(relay2Pin, LOW);
+        leftOutput = abs(leftOutput);
+        rightOutput = abs(rightOutput);
     }
-    else {
-      leftOutput = 0;
-      rightOutput = 0;
+    else
+    {
+        leftOutput = 0;
+        rightOutput = 0;
     }
     analogWrite(leftPowerPin, leftOutput);
     analogWrite(rightPowerPin, rightOutput);

@@ -2,5 +2,5 @@
     "programmer": "AVR ISP",
     "board": "arduino:avr:uno",
     "port": "/dev/cu.usbmodem14401",
-    "sketch": "turbo.ino"
+    "sketch": "turbo/turbo.ino"
 }
