@@ -2,6 +2,8 @@
 
 Innovation Without Purpose
 
+**UPDATE:** I wrote a [blog post about this thing!](https://duro.me/stories/hackathon/technical/ballad-of-turbochair)
+
 ## Overview
 
 ![A side view of TurboChair](docs/side.jpeg)
